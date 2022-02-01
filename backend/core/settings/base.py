@@ -1,8 +1,13 @@
+import environ
+
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env()
 
-SECRET_KEY = "Don't be so clever m8 ;)"
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+SECRET_KEY = env('DJANGO_SECRET_KEY', default="Don't be so clever m8 ;)")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
